@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*RESET CSS E ESTILIZAÇÃO GERAL DA PÁGINA*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ESTILIZAÇÃO DO CONTAINER <SECTION>*/
+section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgb(30, 5, 62);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    perspective: 1000px;
+}
+
+/*CRIA UM PSEUDO-ELEMENTO INVISÍVEL QUE APARECE ANTES DO CONTEÚDO DA <SECTION> / ESFERA DE CIMA*/
+section::before {
+    content: "";
+    position: absolute;
+    height: 240px;
+    width: 240px;
+    border-radius: 50%;
+
+    /*posição da esfera na página (cima/eaquerda)*/
+    transform: translate(-150px, -100px);
+    background: linear-gradient(90deg, #222, #555);
+}
+
+/* CRIA UM PSEUDO-ELEMENTO INVISÍVEL QUE APARECE DEPOIS DO CONTEÚDO DA <SECTION> / ESFERA DE BAIXO */
+section::after {
+    content: "";
+    position: absolute;
+    height: 240px;
+    width: 240px;
+    border-radius: 50%;
+
+    /*posição da esfera na página (baixo/direita)*/
+    transform: translate(150px, 100px);
+    background: linear-gradient(90deg, #222, #555);
+}
+
+/*CONTAINER CENTRAL ONDE NOSSO CARTÃO FICA*/
+.container {
+    position: relative;
+    height: 275px;
+    width: 375px;
+
+    /*ordem da sobreposição dos elementos na página
+    garante que o cartão fique acima das esferas*/
+    z-index: 100;
+
+    /*cria uma transição suave*/
+    transition: 0.6s;
+
+    /*mantém o efeito 3d dos elementos filhos*/
+    transform-style: preserve-3d;
+}
+
+/*CRIAÇÃO HOVER */
+.container:hover {
+    /*ao passar o mouse por cima, gira o container em 180 graus*/
+    transform: rotateY(180deg);
+}
+
+/*ESTILIZAÇÃO DO CARTÃO*/
+.container .cartao {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    border-radius: 25px;
+
+    /*é o que da o efeito de glassmorphism (fundo embaçado)*/
+    backdrop-filter: blur(25px);
+
+    /*deixam o cartão com bordas e fundo semitransparentes/translúcidos*/
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /*adiciona sombra para dar profundidade*/
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+/*----------------------------------------------------*/
+
+/*ESTILIZAÇÃO PARTE FRONTAL DO CARTÃO:*/
+
+/*1. USA DO FLEXBOX PARA ALINHAR O CABEÇALHO E A LOGO DO CARTÃO VERTICALMENTE NO CENTRO*/
+.frente header,
+.frente .logo {
+    display: flex;
+    align-items: center;
+}
+
+/*2. DEFINE A POSIÇÃO DOS ELEMENTOS DO CABEÇALHO*/
+.frente header {
+
+    /*mantém os elementos um em cada ponta*/
+    justify-content: space-between;
+}
+
+/*3. AJUSTA O TAMANHO DA LOGO E SEU ESPAÇO*/
+.frente .logo img {
+    width: 48px;
+    margin-right: 10px;
+}
+
+/*4. DEFINIÇÃO DOS TÍTULOS PRESENTES NA FRENTE*/
+h5 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/*5. DEFINE A LARGURA DO CHIP*/
+.frente .chip {
+    width: 50px;
+}
+
+/*6. ESTILIZA OS DETALHES FRONTAIS DO CARTÃO:
+    NÚMERO, NOME E VALIDADE*/
+.frente .detalhes-cartao {
+    display: flex;
+    margin-top: 40px;
+
+    /*alinha os itens no final*/
+    align-items: flex-end;
+
+    /*distribui um espaço entre eles*/
+    justify-content: space-between;
+}
+
+/*7. ESTILO PARA OS SUBTÍTULOS*/
+h6 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/*8. ESTILO DO NÚMERO DO CARTÃO*/
+.numero {
+
+    /*fonte maior e mais espaçamento entre cada caracter*/
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/*9. ESTILO DO NOME DO CARTÃO*/
+.nome {
+    /*adiciona um espaço acima do nome do titular*/
+    margin-top: 20px;
+}
+
+/*----------------------------------------------------*/
+
+/*ESTILIZAÇÃO PARTE DO VERSO DO CARTÃO: */
+
+/*1. ESTILIZAÇÃO GERAL VERSO*/
+.verso {
+    /*remove a borda*/
+    border: none;
+
+    padding: 15px 25px 25px 25px;
+
+    /*gira o verso em 180 graus no eixo y (para encaixar no hover*/
+    transform: rotateY(180deg);
+}
+
+/*2. ESTILIZAÇÃO TAG H6 DO VERSO*/
+.verso h6 {
+    font-size: 8px;
+}
+
+/*3. ESTILIZAÇÃO DA SPAN FAIXA-MAGNETICA DO VERSO*/
+.verso .faixa-magnetica {
+    /*posicionamento fixo dentro do cartão*/
+    position: absolute;
+
+    top: 40px;
+    left: 0;
+    height: 45px;
+    width: 100%;
+    background: black;
+}
+
+/*4. ESTILIZAÇÃO DIV ASSINATURA*/
+.cartao.verso .assinatura {
+    /*alinhamento do flexbox*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 80px;
+    height: 40px;
+    width: 85px;
+
+    /*cantos levementes arredondados*/
+    border-radius: 6px;
+
+    /*linear no fundo criando linhas horizontais, simula o limite da assinatura*/
+    background: repeating-linear-gradient(#fff, #fff 3px, #efefef 0px, #efefef 9px);
+}
+
+/*5. ESTILIZAÇÃO TAG I DA DIV ASSINATURA*/
+.assinatura i {
+    color: #000;
+    font-size: 12px;
+    padding: 4px 6px;
+    background-color: #fff;
+    border-radius: 4px;
+
+    /*desloca um pouco para a direita*/
+    margin-right: -30px;
+
+    /*fica por trás da área de assinatura*/
+    z-index: -1;
+}
+
+/*6. ESTILIZAÇÃO TAG H5 DO VERSO*/
+.cartao.verso h5 {
+    font-size: 8px;
+    margin-top: 15px;
+
+}
