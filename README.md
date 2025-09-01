@@ -19,8 +19,8 @@
 <p><strong>CSS3:</strong> Responsável pela estilização, pelo efeito 3D e pela animação de giro do cartão.</p>
 <p><strong>Google Fonts:</strong> Para a tipografia 'Poppins'.</p>
 
-<h2>⚙️ Como rodar</h2>
-<p>Para ver o projeto em funcionamento, basta abrir o arquivo <code>index.html</code> em qualquer navegador web. Por se tratar de um projeto estático, não há necessidade de um servidor local ou de qualquer configuração adicional.</p>
+<h2>⚙️ Como acessar</h2>
+    <p>Para ver o projeto em funcionamento, você pode acessá-lo diretamente pelo link de seu site.</p>
 
 <h2>📁 Estrutura de pastas</h2>
 <pre>
